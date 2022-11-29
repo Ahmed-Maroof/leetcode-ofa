@@ -5,6 +5,7 @@ m = 6
 n = 3
 
 i = j = 0
+# to trim 000 from the end of array
 nums1.reject!.each_with_index do |x, i|
   x == 0 && i > m - 1
 end
