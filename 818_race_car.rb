@@ -1,25 +1,44 @@
+# @param {Integer} target
+# @return {Integer}
 def racecar(target)
   position = 0
   speed = 1
-  response = ''
+  response = 0
 
-  until position == target do
+  # loop until i break it
+  while true
 
-    if position < target
-      # this mean we need to accelerate
-      res = a(position, speed)
-      response += 'A'
+    # check if we go to A
+    a_response = a(position, speed)
+    position_a = a_response[0]
+    speed_a = a_response[1]
+
+    # check if we will got to R
+    r_response = r(position, speed)
+    position_r = r_response[0]
+    speed_r = r_response[1]
+
+    # compare positions with the target to know the right direction
+    diff_a = (target - position_a).abs
+    diff_r = (target - position_r).abs
+
+    if diff_a < diff_r
+      # if diff_a < diff_r this mean going to A is making us near to our target .
+      position = position_a
+      speed = speed_a
+      response += 1
     else
-      #this mean we need to go back
-      res = r(position, speed)
-      response += 'R'
+      # else mean that going R will make us near to target
+      position = position_r
+      speed = speed_r
+      response += 1
     end
-    position = res[0]
-    speed = res[1]
 
+    # check our decision goes right or not
+    if position == target
+      return response
+    end
   end
-
-  response
 end
 
 def a(position, speed)
