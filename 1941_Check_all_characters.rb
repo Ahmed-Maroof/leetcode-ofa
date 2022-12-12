@@ -18,3 +18,10 @@ result = are_occurrences_equal('aaabb')
 puts result
 
 #accepted
+
+
+#other solutions
+
+# def are_occurrences_equal(s)
+#   s.chars.group_by(&:itself).values.map(&:size).uniq.size < 2
+# end
